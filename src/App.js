@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HashRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
 import StatusAlert from "react-status-alert";
 
 import { useDispatch } from "react-redux";
@@ -33,7 +33,7 @@ export default function App() {
       }
     };
     getData();
-  }, []);
+  },[]);
 
   return (
     <div >
@@ -414,28 +414,16 @@ const setNewAnime = async (allData, dispatch) => {
 };
 
 const setActionAnime = async (allData, dispatch) => {
-  const actionanime = await allData.filter((list) => {
-    if (list.Wood === "Bollywood") {
-      return list;
-    }
-  });
+  const actionanime = await allData.filter((list) => list.Wood === "Bollywood");
   await dispatch({ type: "ACTION_ANIME", data: actionanime });
 };
 
 const setChildAnime = async (allData, dispatch) => {
-  const childanime = await allData.filter((list) => {
-    if (list.Wood === "Hollywood") {
-      return list;
-    }
-  });
+  const childanime = await allData.filter((list) => list.Wood === "Hollywood");
   await dispatch({ type: "CHILD_ANIME", data: childanime });
 };
 
 const setAnime = async (allData, dispatch) => {
-  const anime = await allData.filter((list) => {
-    if (list.Wood === "Series") {
-      return list;
-    }
-  });
+  const anime = await allData.filter((list) => list.Wood === "Series");
   await dispatch({ type: "ANIME", data: anime });
 };
