@@ -132,7 +132,7 @@ function SignUpPage() {
   
       const { userName, email, phone, password, cpassword } = user;
   
-      const res = await fetch("/register", {
+      const res = await fetch("/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -241,7 +241,7 @@ function SignUpPage() {
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/login", {
+    const res = await fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -318,7 +318,7 @@ function ProfilePage() {
 
   const callAboutPage = async () => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch("/auth/about", {
         method: "GET",
         headers: {
           Accept: "application/json",
