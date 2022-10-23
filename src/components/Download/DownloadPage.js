@@ -5,17 +5,16 @@ import Axios from "axios";
 import "./DownloadPage.css";
 import Header from "../Header/Header";
 
-export default function DownloadPage() {
+export default function DownloadPage({URL}) {
   const id = useParams().id;
 
   const [data, setdata] = useState("");
 
-  const [seasonsNumberCount, setSeasonsNumberCount] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const dt = await (await Axios.post(`/movie_data/fetch/${id}`)).data;
+        const dt = await (await Axios.post(`${URL}/movie_data/fetch/${id}`)).data;
 
         await setdata(dt[0]);
         document.title = dt[0].Name;
@@ -44,7 +43,6 @@ export default function DownloadPage() {
         }
       });
 
-      setSeasonsNumberCount(seasonCount);
     } catch (err) {
       console.log(err);
     }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { StatusAlertService } from "react-status-alert";
 
-export default function Edit({ data }) {
+export default function Edit({ data, URL }) {
 
   const [name, setname] = useState(data.Name);
 
@@ -13,10 +13,10 @@ export default function Edit({ data }) {
 
   console.log(data.Timestamp);
   const [timestamp, settimestamp] = useState(data.TimeStamp);
-  const [uid, setuid] = useState(data._id);
+  const uid = data._id;
 
 
-  const deleteData = async () => {
+  const deleteData = async ({URL}) => {
     try {
       const confirm = window.confirm("Are You Sure To Delete?");
 
@@ -24,7 +24,7 @@ export default function Edit({ data }) {
         return;
       }
 
-      const res = await Axios.delete(`/movie_data/delete/${uid}`);
+      const res = await Axios.delete(`${URL}/movie_data/delete/${uid}`);
       if (res.data.msg) {
         await StatusAlertService.showError("Something Want Wrong");
       } else {
@@ -49,7 +49,7 @@ export default function Edit({ data }) {
       ) {
         const secret = localStorage.getItem("Site_New_Tokken");
 
-        const res = await Axios.post("/movie_data/update", {
+        const res = await Axios.post(`${URL}/movie_data/update`, {
           uid,
           secret,
           name,

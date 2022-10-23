@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Admin.css";
 import Header from "../Header/Header";
 
-export default function Admin(props) {
+export default function Admin({URL}) {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -15,7 +15,7 @@ export default function Admin(props) {
     const checkAdmin = async () => {
       const secret = localStorage.getItem("Site_New_Tokken");
       if (secret) {
-        const res = await Axios.post("/admin/check", { secret });
+        const res = await Axios.post(`${URL}/admin/check`, { secret });
         if (res) {
           navigate("/A_D_M_I_N/Dashboard");
         } else {
@@ -38,7 +38,7 @@ export default function Admin(props) {
         onSubmit={async (e) => {
           try {
             e.preventDefault();
-            const res = await Axios.post("/admin", {
+            const res = await Axios.post(`${URL}/admin`, {
               email,
               password,
               secret,
@@ -49,7 +49,7 @@ export default function Admin(props) {
             if (secretCode) {
               //
 
-              const res = await Axios.post("/admin/check", {
+              const res = await Axios.post(`${URL}/admin/check`, {
                 secret: secretCode,
               });
               if (res) {

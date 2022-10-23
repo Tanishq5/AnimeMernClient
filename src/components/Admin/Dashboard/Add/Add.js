@@ -4,7 +4,7 @@ import { StatusAlertService } from "react-status-alert";
 
 import "./Add.css";
 
-export default function Add() {
+export default function Add({URL}) {
 
   const [name, setname] = useState("");
 
@@ -25,7 +25,7 @@ export default function Add() {
 
       const timestamp = await Date.now();
 
-      const res = await Axios.post("/movie_data/add", {
+      const res = await Axios.post(`${URL}/movie_data/add`, {
         secret,
         name,
         wood,

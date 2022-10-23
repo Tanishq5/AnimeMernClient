@@ -9,7 +9,7 @@ import Header from "../../Header/Header";
 
 import "./Dashboard.css";
 
-export default function Dashboard() {
+export default function Dashboard({URL}) {
   const navigate = useNavigate();
   var allMovieData = useSelector((state) => state.allmoviedata);
 
@@ -27,7 +27,7 @@ export default function Dashboard() {
 
       setTimeout(async () => {
         if (secret) {
-          const res = await Axios.post("/admin/check", { secret: secret });
+          const res = await Axios.post(`${URL}/admin/check`, { secret: secret });
 
           if (res.data) {
             await navigate("/A_D_M_I_N/Dashboard");
@@ -176,7 +176,7 @@ export default function Dashboard() {
           </div>
         </div>
       ) : (
-        <div>{!isEdit ? <Add /> : <Edit data={dataObj} />}</div>
+        <div>{!isEdit ? <Add URL={URL}/> : <Edit data={dataObj} URL={URL}/>}</div>
       )}
     </div>
   );

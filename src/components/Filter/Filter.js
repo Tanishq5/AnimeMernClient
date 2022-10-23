@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
 import Header from "../Header/Header";
 
 import List from "./List/List";

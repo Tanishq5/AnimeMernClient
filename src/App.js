@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { HashRouter, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import StatusAlert from "react-status-alert";
 
 import { useDispatch } from "react-redux";
 
 import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
 import Filter from "./components/Filter/Filter";
 import DownloadPage from "./components/Download/DownloadPage";
 import Admin from "./components/Admin/Admin";
@@ -20,6 +19,8 @@ import "./Login.css";
 import "./Home.css";
 import "./App.css";
 import Axios from "axios";
+
+const URL = "https://anime-verse.herokuapp.com"
 
 export default function App() {
   const [isload, setisload] = useState(true);
@@ -43,12 +44,12 @@ export default function App() {
           <Route path="signup" element={<SignUpPage />} />
           <Route path="login" element={<LogInPage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/profile/:userId" element={<EditProfile />} />
-          <Route path="/filter/:type" element={<Filter />} />
-          <Route path="/download/:id" element={<DownloadPage />} />
-          <Route exact path="/A_D_M_I_N" element={<Admin />} />
-          <Route exact path="/A_D_M_I_N/Dashboard" element={<Dashboard />} />
-          <Route path="/search/:search" element={<Search />} />
+          <Route path="/profile/:userId" element={<EditProfile URL={URL}/>} />
+          <Route path="/filter/:type" element={<Filter/>} />
+          <Route path="/download/:id" element={<DownloadPage URL={URL}/>} />
+          <Route exact path="/A_D_M_I_N" element={<Admin URL={URL}/>} />
+          <Route exact path="/A_D_M_I_N/Dashboard" element={<Dashboard URL={URL}/>} />
+          <Route path="/search/:search" element={<Search/>} />
           <Route element={<Page404 />} />
         </Routes>
     </div>
@@ -132,7 +133,7 @@ function SignUpPage() {
   
       const { userName, email, phone, password, cpassword } = user;
   
-      const res = await fetch("/auth/register", {
+      const res = await fetch(`${URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -241,7 +242,7 @@ function SignUpPage() {
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/auth/login", {
+    const res = await fetch(`${URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -318,8 +319,9 @@ function ProfilePage() {
 
   const callAboutPage = async () => {
     try {
-      const res = await fetch("/auth/about", {
+      const res = await fetch(`${URL}/auth/about`, {
         method: "GET",
+        credentials: "same-origin",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -381,7 +383,7 @@ function ProfilePage() {
 }
 
 const fetchData = async (dispatch) => {
-  const allData = await (await Axios.post("/movie_data/fetch")).data;
+  const allData = await (await Axios.post(`${URL}/movie_data/fetch`)).data;
 
   const filterDataWithTimeStamp = await filterWithTimeStamp(allData);
 

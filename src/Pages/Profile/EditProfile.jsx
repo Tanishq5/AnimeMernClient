@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 
-const EditProfile = () => {
+const EditProfile = ({URL}) => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [userData, setUserData] = useState({});
@@ -18,7 +18,7 @@ const EditProfile = () => {
   useEffect(() => {
     const Edit = async() => {
     try {
-      const res = await fetch("/about", {
+      const res = await fetch(`${URL}/about`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -58,7 +58,7 @@ Edit();
 
     const { userName, email, phone } = user;
 
-    const res = await fetch(`/about/${userId}`, {
+    const res = await fetch(`${URL}/about/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
