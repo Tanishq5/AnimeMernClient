@@ -383,7 +383,7 @@ function ProfilePage() {
 }
 
 const fetchData = async (dispatch) => {
-  const allData = await (await Axios.post("/movie_data/fetch")).data;
+  const allData = await (await Axios.post(`${URL}/movie_data/fetch`)).data;
 
   const filterDataWithTimeStamp = await filterWithTimeStamp(allData);
 
@@ -416,28 +416,16 @@ const setNewAnime = async (allData, dispatch) => {
 };
 
 const setActionAnime = async (allData, dispatch) => {
-  const actionanime = await allData.filter((list) => {
-    if (list.Wood === "Bollywood") {
-      return list;
-    }
-  });
+  const actionanime = await allData.filter((list) => list.Wood === "Bollywood");
   await dispatch({ type: "ACTION_ANIME", data: actionanime });
 };
 
 const setChildAnime = async (allData, dispatch) => {
-  const childanime = await allData.filter((list) => {
-    if (list.Wood === "Hollywood") {
-      return list;
-    }
-  });
+  const childanime = await allData.filter((list) => list.Wood === "Hollywood");
   await dispatch({ type: "CHILD_ANIME", data: childanime });
 };
 
 const setAnime = async (allData, dispatch) => {
-  const anime = await allData.filter((list) => {
-    if (list.Wood === "Series") {
-      return list;
-    }
-  });
+  const anime = await allData.filter((list) => list.Wood === "Series");
   await dispatch({ type: "ANIME", data: anime });
 };
