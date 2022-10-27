@@ -417,7 +417,7 @@ const setNewAnime = async (allData, dispatch) => {
 
 const setActionAnime = async (allData, dispatch) => {
   const actionanime = await allData.filter((list) => {
-    if (list.Wood === "Hollywood") {
+    if (list.Wood === "Bollywood") {
       return list;
     }
   });
@@ -425,11 +425,19 @@ const setActionAnime = async (allData, dispatch) => {
 };
 
 const setChildAnime = async (allData, dispatch) => {
-  const childanime = await allData.filter((list) => list.Wood === "Hollywood");
+  const childanime = await allData.filter((list) => {
+    if (list.Wood === "Hollywood") {
+      return list;
+    }
+  });
   await dispatch({ type: "CHILD_ANIME", data: childanime });
 };
 
 const setAnime = async (allData, dispatch) => {
-  const anime = await allData.filter((list) => list.Wood === "Series");
+  const anime = await allData.filter((list) => {
+    if (list.Wood === "Series") {
+      return list;
+    }
+  });
   await dispatch({ type: "ANIME", data: anime });
 };
