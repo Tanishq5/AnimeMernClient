@@ -416,7 +416,11 @@ const setNewAnime = async (allData, dispatch) => {
 };
 
 const setActionAnime = async (allData, dispatch) => {
-  const actionanime = await allData.filter();
+  const actionanime = await allData.filter((list) => {
+    if (list.Wood === "Hollywood") {
+      return list;
+    }
+  });
   await dispatch({ type: "ACTION_ANIME", data: actionanime });
 };
 
