@@ -416,7 +416,7 @@ const setNewAnime = async (allData, dispatch) => {
 };
 
 const setActionAnime = async (allData, dispatch) => {
-  const actionanime = await allData.filter((list) => list.Wood === "Bollywood");
+  const actionanime = await allData.filter();
   await dispatch({ type: "ACTION_ANIME", data: actionanime });
 };
 
