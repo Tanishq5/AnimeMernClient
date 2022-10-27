@@ -383,7 +383,7 @@ function ProfilePage() {
 }
 
 const fetchData = async (dispatch) => {
-  const allData = await (await Axios.post(`${URL}/movie_data/fetch`)).data;
+  const allData = await (await Axios.post("/movie_data/fetch")).data;
 
   const filterDataWithTimeStamp = await filterWithTimeStamp(allData);
 
