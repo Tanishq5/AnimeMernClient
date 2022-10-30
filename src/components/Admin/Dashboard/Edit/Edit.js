@@ -16,7 +16,7 @@ export default function Edit({ data, URL }) {
   const uid = data._id;
 
 
-  const deleteData = async ({URL}) => {
+  const deleteData = async () => {
     try {
       const confirm = window.confirm("Are You Sure To Delete?");
 
