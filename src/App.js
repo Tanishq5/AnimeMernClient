@@ -242,7 +242,7 @@ function SignUpPage() {
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`${URL}/auth/login`, {
+    const res = await fetch("/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
