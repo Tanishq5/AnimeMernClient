@@ -247,7 +247,6 @@ function SignUpPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "same-origin",
       body: JSON.stringify({
         email,
         password,
