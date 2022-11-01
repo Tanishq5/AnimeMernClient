@@ -24,7 +24,7 @@ const EditProfile = ({URL}) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials: "include",
+        // credentials: "include",
       });
 
 
@@ -38,7 +38,7 @@ const EditProfile = ({URL}) => {
       }
     } catch (err) {
       console.log(err);
-      navigate("/login");
+      // navigate("/login");
     }
 }
 Edit();

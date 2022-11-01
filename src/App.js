@@ -321,7 +321,6 @@ function ProfilePage() {
     try {
       const res = await fetch(`${URL}/auth/about`, {
         method: "GET",
-        credentials: "same-origin",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
